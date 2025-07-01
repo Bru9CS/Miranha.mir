@@ -227,7 +227,7 @@ int main(int argc, char* argv[]){
         exit(1);
     }
 
-    fprintf(outputFile, "#include <stdio.h>\n");
+    fprintf(outputFile, "#include <stdio.h>\nint main(){\n");
 
     yyin = fopen(argv[1], "r");
     if (!yyin) {
@@ -236,18 +236,19 @@ int main(int argc, char* argv[]){
     }
     yyparse();
     fclose(yyin);
+    fprintf(outputFile, "\nreturn 0;\n}");
+    fclose(outputFile);
 
     char cmd[512];
-    snprintf(cmd, sizeof(cmd), "C:/msys64/mingw64/bin/gcc.exe -mconsole %s -o %s", outputC, outputExe);
-    printf("Compilando com: %s\n", cmd);
+    snprintf(cmd, sizeof(cmd), "gcc %s -o %s", outputC, outputExe);
     if (system(cmd) != 0) {
         fprintf(stderr, "Falha ao compilar %s\n", outputC);
         return 1;
     }
 
     // Apagar arquivo temporário .c
-    /*if (remove("output.c") != 0) {
+    if (remove(outputC) != 0) {
         perror("Erro ao remover output");
-    }*/
+    }
     return 0;
 }
