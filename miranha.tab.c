@@ -76,8 +76,10 @@
     int yyerror(char *s);
     FILE* outputFile;
     extern FILE *yyin;
+    extern char* yytext;
+    extern int lineNumber;
 
-#line 81 "miranha.tab.c"
+#line 83 "miranha.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -582,14 +584,14 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    30,    30,    30,    30,    33,    36,    35,    41,    43,
-      45,    49,    50,    51,    52,    53,    54,    55,    56,    57,
-      58,    62,    64,    61,    67,    70,    72,    69,    75,    78,
-      77,    83,    85,    82,    91,    93,    90,    98,   100,   102,
-     104,    97,   108,   108,   112,   111,   114,   116,   115,   119,
-     120,   124,   124,   127,   128,   130,   132,   134,   136,   140,
-     142,   144,   146,   148,   152,   154,   156,   161,   163,   160,
-     166,   165,   168,   172,   171,   178,   177,   182,   185,   184
+       0,    32,    32,    32,    32,    35,    38,    37,    43,    45,
+      47,    51,    52,    53,    54,    55,    56,    57,    58,    59,
+      60,    64,    66,    63,    69,    72,    74,    71,    77,    80,
+      79,    85,    87,    84,    93,    95,    92,   100,   102,   104,
+     106,    99,   110,   110,   114,   113,   116,   118,   117,   121,
+     122,   126,   126,   129,   130,   132,   134,   136,   138,   142,
+     144,   146,   148,   150,   154,   156,   158,   163,   165,   162,
+     168,   167,   170,   174,   173,   180,   179,   184,   187,   186
 };
 #endif
 
@@ -1283,277 +1285,277 @@ yyreduce:
   switch (yyn)
     {
   case 5: /* DECL: TIPO ID SEMICOLON  */
-#line 34 "miranha.y"
+#line 36 "miranha.y"
     {fprintf(outputFile, "%s;\n", (yyvsp[-1].var));}
-#line 1289 "miranha.tab.c"
+#line 1291 "miranha.tab.c"
     break;
 
   case 6: /* $@1: %empty  */
-#line 36 "miranha.y"
-    {fprintf(outputFile, "%s = ;\n", (yyvsp[-1].var));}
-#line 1295 "miranha.tab.c"
+#line 38 "miranha.y"
+    {fprintf(outputFile, "%s = ", (yyvsp[-1].var));}
+#line 1297 "miranha.tab.c"
     break;
 
   case 7: /* DECL: TIPO ID ASSIGN_OP $@1 EXPR SEMICOLON  */
-#line 38 "miranha.y"
+#line 40 "miranha.y"
     {fprintf(outputFile, ";\n");}
-#line 1301 "miranha.tab.c"
+#line 1303 "miranha.tab.c"
     break;
 
   case 8: /* TIPO: T_INT  */
-#line 42 "miranha.y"
+#line 44 "miranha.y"
     {fprintf(outputFile, "int ");}
-#line 1307 "miranha.tab.c"
+#line 1309 "miranha.tab.c"
     break;
 
   case 9: /* TIPO: T_FLOAT  */
-#line 44 "miranha.y"
+#line 46 "miranha.y"
     {fprintf(outputFile, "float ");}
-#line 1313 "miranha.tab.c"
+#line 1315 "miranha.tab.c"
     break;
 
   case 10: /* TIPO: T_CHAR  */
-#line 46 "miranha.y"
+#line 48 "miranha.y"
     {fprintf(outputFile, "char ");}
-#line 1319 "miranha.tab.c"
+#line 1321 "miranha.tab.c"
     break;
 
   case 21: /* $@2: %empty  */
-#line 62 "miranha.y"
+#line 64 "miranha.y"
     {fprintf(outputFile, "if( ");}
-#line 1325 "miranha.tab.c"
+#line 1327 "miranha.tab.c"
     break;
 
   case 22: /* $@3: %empty  */
-#line 64 "miranha.y"
+#line 66 "miranha.y"
     {fprintf(outputFile, ") ");}
-#line 1331 "miranha.tab.c"
+#line 1333 "miranha.tab.c"
     break;
 
   case 25: /* $@4: %empty  */
-#line 70 "miranha.y"
+#line 72 "miranha.y"
     {fprintf(outputFile, "else if( ");}
-#line 1337 "miranha.tab.c"
+#line 1339 "miranha.tab.c"
     break;
 
   case 26: /* $@5: %empty  */
-#line 72 "miranha.y"
+#line 74 "miranha.y"
     {fprintf(outputFile, ") ");}
-#line 1343 "miranha.tab.c"
+#line 1345 "miranha.tab.c"
     break;
 
   case 29: /* $@6: %empty  */
-#line 78 "miranha.y"
+#line 80 "miranha.y"
     {fprintf(outputFile, "else ");}
-#line 1349 "miranha.tab.c"
+#line 1351 "miranha.tab.c"
     break;
 
   case 31: /* $@7: %empty  */
-#line 83 "miranha.y"
+#line 85 "miranha.y"
     {fprintf(outputFile, "case( ");}
-#line 1355 "miranha.tab.c"
+#line 1357 "miranha.tab.c"
     break;
 
   case 32: /* $@8: %empty  */
-#line 85 "miranha.y"
+#line 87 "miranha.y"
     {fprintf(outputFile, "){\n");}
-#line 1361 "miranha.tab.c"
+#line 1363 "miranha.tab.c"
     break;
 
   case 33: /* COND: T_CASE LPAREN $@7 EXPR RPAREN LBRACE $@8 CASOS RBRACE  */
-#line 87 "miranha.y"
+#line 89 "miranha.y"
     {fprintf(outputFile, "}\n");}
-#line 1367 "miranha.tab.c"
+#line 1369 "miranha.tab.c"
     break;
 
   case 34: /* $@9: %empty  */
-#line 91 "miranha.y"
+#line 93 "miranha.y"
     {fprintf(outputFile, "while( ");}
-#line 1373 "miranha.tab.c"
+#line 1375 "miranha.tab.c"
     break;
 
   case 35: /* $@10: %empty  */
-#line 93 "miranha.y"
+#line 95 "miranha.y"
     {fprintf(outputFile, ") ");}
-#line 1379 "miranha.tab.c"
+#line 1381 "miranha.tab.c"
     break;
 
   case 37: /* $@11: %empty  */
-#line 98 "miranha.y"
+#line 100 "miranha.y"
     {fprintf(outputFile, "for( ");}
-#line 1385 "miranha.tab.c"
+#line 1387 "miranha.tab.c"
     break;
 
   case 38: /* $@12: %empty  */
-#line 100 "miranha.y"
+#line 102 "miranha.y"
     {fprintf(outputFile, "; ");}
-#line 1391 "miranha.tab.c"
+#line 1393 "miranha.tab.c"
     break;
 
   case 39: /* $@13: %empty  */
-#line 102 "miranha.y"
+#line 104 "miranha.y"
     {fprintf(outputFile, "; ");}
-#line 1397 "miranha.tab.c"
+#line 1399 "miranha.tab.c"
     break;
 
   case 40: /* $@14: %empty  */
-#line 104 "miranha.y"
+#line 106 "miranha.y"
     {fprintf(outputFile, ") ");}
-#line 1403 "miranha.tab.c"
+#line 1405 "miranha.tab.c"
     break;
 
   case 44: /* $@15: %empty  */
-#line 112 "miranha.y"
+#line 114 "miranha.y"
     {fprintf(outputFile, "%s = ", (yyvsp[-1].var));}
-#line 1409 "miranha.tab.c"
+#line 1411 "miranha.tab.c"
     break;
 
   case 47: /* $@16: %empty  */
-#line 116 "miranha.y"
+#line 118 "miranha.y"
     {fprintf(outputFile, "( ");}
-#line 1415 "miranha.tab.c"
+#line 1417 "miranha.tab.c"
     break;
 
   case 48: /* EXPR: LPAREN $@16 EXPR RPAREN  */
-#line 118 "miranha.y"
+#line 120 "miranha.y"
     {fprintf(outputFile, ") ");}
-#line 1421 "miranha.tab.c"
+#line 1423 "miranha.tab.c"
     break;
 
   case 50: /* EXPR: ID  */
-#line 121 "miranha.y"
+#line 123 "miranha.y"
     {fprintf(outputFile, "%s ", (yyvsp[0].var));}
-#line 1427 "miranha.tab.c"
+#line 1429 "miranha.tab.c"
     break;
 
   case 54: /* RELAT_OP: NE_OP  */
-#line 129 "miranha.y"
+#line 131 "miranha.y"
     {fprintf(outputFile, "!= ");}
-#line 1433 "miranha.tab.c"
+#line 1435 "miranha.tab.c"
     break;
 
   case 55: /* RELAT_OP: LT_OP  */
-#line 131 "miranha.y"
+#line 133 "miranha.y"
     {fprintf(outputFile, "< ");}
-#line 1439 "miranha.tab.c"
+#line 1441 "miranha.tab.c"
     break;
 
   case 56: /* RELAT_OP: LE_OP  */
-#line 133 "miranha.y"
+#line 135 "miranha.y"
     {fprintf(outputFile, "<= ");}
-#line 1445 "miranha.tab.c"
+#line 1447 "miranha.tab.c"
     break;
 
   case 57: /* RELAT_OP: GT_OP  */
-#line 135 "miranha.y"
+#line 137 "miranha.y"
     {fprintf(outputFile, "> ");}
-#line 1451 "miranha.tab.c"
+#line 1453 "miranha.tab.c"
     break;
 
   case 58: /* RELAT_OP: GE_OP  */
-#line 137 "miranha.y"
+#line 139 "miranha.y"
     {fprintf(outputFile, ">= ");}
-#line 1457 "miranha.tab.c"
+#line 1459 "miranha.tab.c"
     break;
 
   case 59: /* ARITH_OP: PLUS_OP  */
-#line 141 "miranha.y"
+#line 143 "miranha.y"
     {fprintf(outputFile, "+ ");}
-#line 1463 "miranha.tab.c"
+#line 1465 "miranha.tab.c"
     break;
 
   case 60: /* ARITH_OP: MINUS_OP  */
-#line 143 "miranha.y"
+#line 145 "miranha.y"
     {fprintf(outputFile, "- ");}
-#line 1469 "miranha.tab.c"
+#line 1471 "miranha.tab.c"
     break;
 
   case 61: /* ARITH_OP: MULT_OP  */
-#line 145 "miranha.y"
+#line 147 "miranha.y"
     {fprintf(outputFile, "* ");}
-#line 1475 "miranha.tab.c"
+#line 1477 "miranha.tab.c"
     break;
 
   case 62: /* ARITH_OP: DIV_OP  */
-#line 147 "miranha.y"
+#line 149 "miranha.y"
     {fprintf(outputFile, "/ ");}
-#line 1481 "miranha.tab.c"
+#line 1483 "miranha.tab.c"
     break;
 
   case 63: /* ARITH_OP: MOD_OP  */
-#line 149 "miranha.y"
+#line 151 "miranha.y"
     {fprintf(outputFile, "%% ");}
-#line 1487 "miranha.tab.c"
+#line 1489 "miranha.tab.c"
     break;
 
   case 64: /* NUM: INT_CONST  */
-#line 153 "miranha.y"
+#line 155 "miranha.y"
     {fprintf(outputFile, "%d ", (yyvsp[0].integer));}
-#line 1493 "miranha.tab.c"
+#line 1495 "miranha.tab.c"
     break;
 
   case 65: /* NUM: FLOAT_CONST  */
-#line 155 "miranha.y"
+#line 157 "miranha.y"
     {fprintf(outputFile, "%f ", (yyvsp[0].floating));}
-#line 1499 "miranha.tab.c"
+#line 1501 "miranha.tab.c"
     break;
 
   case 66: /* NUM: CHAR_CONST  */
-#line 157 "miranha.y"
+#line 159 "miranha.y"
     {fprintf(outputFile, "%c ", (yyvsp[0].character));}
-#line 1505 "miranha.tab.c"
+#line 1507 "miranha.tab.c"
     break;
 
   case 67: /* $@17: %empty  */
-#line 161 "miranha.y"
+#line 163 "miranha.y"
     {fprintf(outputFile, "case ");}
-#line 1511 "miranha.tab.c"
+#line 1513 "miranha.tab.c"
     break;
 
   case 68: /* $@18: %empty  */
-#line 163 "miranha.y"
+#line 165 "miranha.y"
     {fprintf(outputFile, ": ");}
-#line 1517 "miranha.tab.c"
+#line 1519 "miranha.tab.c"
     break;
 
   case 70: /* $@19: %empty  */
-#line 166 "miranha.y"
+#line 168 "miranha.y"
     {fprintf(outputFile, "default: ");}
-#line 1523 "miranha.tab.c"
+#line 1525 "miranha.tab.c"
     break;
 
   case 73: /* $@20: %empty  */
-#line 172 "miranha.y"
+#line 174 "miranha.y"
     {fprintf(outputFile, "scanf(\"%s\" ", (yyvsp[0].text));}
-#line 1529 "miranha.tab.c"
+#line 1531 "miranha.tab.c"
     break;
 
   case 74: /* LE: T_SCAN LPAREN STRING_CONST $@20 PARAM RPAREN SEMICOLON  */
-#line 174 "miranha.y"
+#line 176 "miranha.y"
     {fprintf(outputFile, ");\n");}
-#line 1535 "miranha.tab.c"
+#line 1537 "miranha.tab.c"
     break;
 
   case 75: /* $@21: %empty  */
-#line 178 "miranha.y"
+#line 180 "miranha.y"
     {fprintf(outputFile, "printf(\"%s\" ", (yyvsp[0].text));}
-#line 1541 "miranha.tab.c"
+#line 1543 "miranha.tab.c"
     break;
 
   case 76: /* ESCREVE: T_PRINT LPAREN STRING_CONST $@21 PARAM RPAREN SEMICOLON  */
-#line 180 "miranha.y"
+#line 182 "miranha.y"
     {fprintf(outputFile, ");\n");}
-#line 1547 "miranha.tab.c"
+#line 1549 "miranha.tab.c"
     break;
 
   case 78: /* $@22: %empty  */
-#line 185 "miranha.y"
+#line 187 "miranha.y"
      {fprintf(outputFile, ", ");}
-#line 1553 "miranha.tab.c"
+#line 1555 "miranha.tab.c"
     break;
 
 
-#line 1557 "miranha.tab.c"
+#line 1559 "miranha.tab.c"
 
       default: break;
     }
@@ -1746,11 +1748,11 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 188 "miranha.y"
+#line 190 "miranha.y"
 
 
 int yyerror(char *s){
-    printf("Syntax error at %s\n", s);
+    fprintf(stderr, "%s: unexpected '%s' at line %d\n", s, yytext, lineNumber);
 }
 
 int main(int argc, char* argv[]){
@@ -1796,16 +1798,18 @@ int main(int argc, char* argv[]){
         perror("Erro ao abrir arquivo de entrada");
         exit(1);
     }
-    yyparse();
+    char result = yyparse();
     fclose(yyin);
     fprintf(outputFile, "\nreturn 0;\n}");
     fclose(outputFile);
 
-    char cmd[512];
-    snprintf(cmd, sizeof(cmd), "gcc %s -o %s", outputC, outputExe);
-    if (system(cmd) != 0) {
-        fprintf(stderr, "Falha ao compilar %s\n", outputC);
-        return 1;
+    if(result == 0){
+        char cmd[512];
+        snprintf(cmd, sizeof(cmd), "gcc %s -o %s", outputC, outputExe);
+        if (system(cmd) != 0) {
+            fprintf(stderr, "Falha ao compilar %s\n", outputC);
+            return 1;
+        }
     }
 
     // Apagar arquivo temporário .c

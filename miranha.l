@@ -25,7 +25,7 @@ ws      [ \t]+
 "aluguel?" {return(T_FLOAT);}
 "e_so_um_pico" {return(T_CHAR);}
 "pode_falar" {return(T_SCAN);}
-deixa_a_mamae_e_o_papai_conversarem {return(T_PRINT);}
+"deixa_a_mamae_e_o_papai_conversarem" {return(T_PRINT);}
 "com_grandes_poderes" {return(T_IF);}
 "vem_grandes_responsabilidades" {return(T_ELSE);}
 "se_alguem_comesse_promessa_minha_filha_seria_gorda" {return(T_ELSEIF);}
@@ -66,7 +66,7 @@ deixa_a_mamae_e_o_papai_conversarem {return(T_PRINT);}
 "{" {return(LBRACE);}
 "}" {return(RBRACE);}
 
-\n        {lineNumber++;}
+"\n"        {lineNumber++;}
 
 {id} {strncpy(yylval.var, yytext, 63); yylval.var[63] = '\0'; return(ID);}
 
@@ -90,6 +90,8 @@ deixa_a_mamae_e_o_papai_conversarem {return(T_PRINT);}
             }
         }
 
+. {showError(yytext, lineNumber);}
+
 %%
 
 int yywrap() {
@@ -97,6 +99,5 @@ int yywrap() {
 }
 
 void showError(char* t, int l){
-    printf("Unexpected %s at line %d", t, l);
-    exit(1);
+    printf("Unexpected %s at line %d\n", t, l);
 }

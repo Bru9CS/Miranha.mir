@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 47
-#define YY_END_OF_BUFFER 48
+#define YY_NUM_RULES 48
+#define YY_END_OF_BUFFER 49
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,7 +362,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[622] =
     {   0,
-        0,    0,   48,   47,   44,   42,   47,   47,   38,   39,
+        0,    0,   49,   47,   44,   42,   47,   47,   38,   39,
        47,   37,   47,   16,   36,   35,   43,   43,   43,   43,
        43,   43,   43,   43,   43,   43,   43,   43,   43,   43,
        43,   40,   41,   44,    0,    0,   16,   46,   45,    0,
@@ -1328,9 +1328,14 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 #line 93 "miranha.l"
+{showError(yytext, lineNumber);}
+	YY_BREAK
+case 48:
+YY_RULE_SETUP
+#line 95 "miranha.l"
 ECHO;
 	YY_BREAK
-#line 1333 "lex.yy.c"
+#line 1338 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2335,7 +2340,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 93 "miranha.l"
+#line 95 "miranha.l"
 
 
 int yywrap() {
@@ -2343,6 +2348,5 @@ int yywrap() {
 }
 
 void showError(char* t, int l){
-    printf("Unexpected %s at line %d", t, l);
-    exit(1);
+    printf("Unexpected %s at line %d\n", t, l);
 }

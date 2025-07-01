@@ -6,6 +6,8 @@
     int yyerror(char *s);
     FILE* outputFile;
     extern FILE *yyin;
+    extern char* yytext;
+    extern int lineNumber;
 %}
 
 %token T_INT T_FLOAT T_CHAR T_SCAN T_PRINT T_IF T_ELSE T_ELSEIF T_SWITCH T_CASE T_DEFAULT T_CONTINUE T_BREAK T_WHILE T_FOR INT_CONST FLOAT_CONST CHAR_CONST STRING_CONST PLUS_OP MINUS_OP MULT_OP DIV_OP MOD_OP EQ_OP NE_OP GE_OP LE_OP GT_OP LT_OP AND_OP OR_OP NOT_OP ASSIGN_OP SEMICOLON COLON COMMA LPAREN RPAREN LBRACE RBRACE ID
@@ -33,7 +35,7 @@ DECL:
     TIPO ID SEMICOLON 
     {fprintf(outputFile, "%s;\n", $2);}
     | TIPO ID ASSIGN_OP
-    {fprintf(outputFile, "%s = ;\n", $2);}
+    {fprintf(outputFile, "%s = ", $2);}
     EXPR SEMICOLON
     {fprintf(outputFile, ";\n");}
 
@@ -188,7 +190,7 @@ PARAM:
 %%
 
 int yyerror(char *s){
-    printf("Syntax error at %s\n", s);
+    fprintf(stderr, "%s: unexpected '%s' at line %d\n", s, yytext, lineNumber);
 }
 
 int main(int argc, char* argv[]){
@@ -234,16 +236,18 @@ int main(int argc, char* argv[]){
         perror("Erro ao abrir arquivo de entrada");
         exit(1);
     }
-    yyparse();
+    char result = yyparse();
     fclose(yyin);
     fprintf(outputFile, "\nreturn 0;\n}");
     fclose(outputFile);
 
-    char cmd[512];
-    snprintf(cmd, sizeof(cmd), "gcc %s -o %s", outputC, outputExe);
-    if (system(cmd) != 0) {
-        fprintf(stderr, "Falha ao compilar %s\n", outputC);
-        return 1;
+    if(result == 0){
+        char cmd[512];
+        snprintf(cmd, sizeof(cmd), "gcc %s -o %s", outputC, outputExe);
+        if (system(cmd) != 0) {
+            fprintf(stderr, "Falha ao compilar %s\n", outputC);
+            return 1;
+        }
     }
 
     // Apagar arquivo temporário .c
