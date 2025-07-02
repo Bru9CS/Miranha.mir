@@ -1,14 +1,15 @@
 Compilador da linguagem Miranhês.
 
-*Compilando*
+#Compilando
 Para compilar um código fileName.mir, use o comando:
-"miranha fileName.mir"
+miranha fileName.mir
+É necessário que o usuário tenha o gcc instalado e corretamente configurado no PATH do Windows.
 
-*Compilando deixando o arquivo C intermediário*
+##Compilando deixando o arquivo C intermediário
 Para compilar um código fileName.mir, deixando registrado o código C intermediário criado pelo parser do Miranhês, use o comando:
-"miranha fileName.mir -o"
+miranha fileName.mir -o
 
-*Compilando o compilador*
+#Compilando o compilador
 No MingW, use:
 bison -d miranha.y
 flex miranha.l
