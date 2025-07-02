@@ -1,0 +1,163 @@
+o_anuncio_dizia_tres_mil i eu_sou_outra_pessoa 0;
+o_anuncio_dizia_tres_mil posicao;
+o_anuncio_dizia_tres_mil jogador eu_sou_outra_pessoa 0;
+o_anuncio_dizia_tres_mil vencedor eu_sou_outra_pessoa -1;
+
+o_anuncio_dizia_tres_mil tabVal;
+o_anuncio_dizia_tres_mil tab0 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab1 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab2 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab3 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab4 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab5 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab6 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab7 eu_sou_outra_pessoa 32;
+o_anuncio_dizia_tres_mil tab8 eu_sou_outra_pessoa 32;
+
+aguenta_ai_mary_jane(i ainda_nao_sou_tudo_que_posso_ser 8){
+
+    deixa_a_mamae_e_o_papai_conversarem("Tabuleiro atual:\n");
+    deixa_a_mamae_e_o_papai_conversarem("%c | %c | %c\n", tab0, tab1, tab2);
+    deixa_a_mamae_e_o_papai_conversarem("--+---+--\n");
+    deixa_a_mamae_e_o_papai_conversarem("%c | %c | %c\n", tab3, tab4, tab5);
+    deixa_a_mamae_e_o_papai_conversarem("--+---+--\n");
+    deixa_a_mamae_e_o_papai_conversarem("%c | %c | %c\n", tab6, tab7, tab8);
+
+    deixa_a_mamae_e_o_papai_conversarem("Jogador %d, escolha uma posicao (1-9): ", jogador posso_fazer_mais 1);
+    pode_falar("%d", posicao);
+
+    com_grandes_poderes(posicao voce_esta_acima_disso 0 tem_sempre_outra_maneira posicao ainda_nao_sou_tudo_que_posso_ser 9){
+        esta_um_lixo(posicao){
+            lixo 1:
+                tabVal eu_sou_outra_pessoa tab0;
+                me_quebrei;
+            lixo 2:
+                tabVal eu_sou_outra_pessoa tab1;
+                me_quebrei;
+            lixo 3:
+                tabVal eu_sou_outra_pessoa tab2;
+                me_quebrei;
+            lixo 4:
+                tabVal eu_sou_outra_pessoa tab3;
+                me_quebrei;
+            lixo 5:
+                tabVal eu_sou_outra_pessoa tab4;
+                me_quebrei;
+            lixo 6:
+                tabVal eu_sou_outra_pessoa tab5;
+                me_quebrei;
+            lixo 7:
+                tabVal eu_sou_outra_pessoa tab6;
+                me_quebrei;
+            lixo 8:
+                tabVal eu_sou_outra_pessoa tab7;
+                me_quebrei;
+            lixo 9:
+                tabVal eu_sou_outra_pessoa tab8;
+                me_quebrei;
+        }
+
+        com_grandes_poderes(tabVal voce_e_como_eu 32){
+            com_grandes_poderes(jogador voce_e_como_eu 1){
+                esta_um_lixo(posicao){
+                    lixo 1:
+                        tab0 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 2:
+                        tab1 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 3:
+                        tab2 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 4:
+                        tab3 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 5:
+                        tab4 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 6:
+                        tab5 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 7:
+                        tab6 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 8:
+                        tab7 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                    lixo 9:
+                        tab8 eu_sou_outra_pessoa 'O';
+                        me_quebrei;
+                }
+            }
+            vem_grandes_responsabilidades{
+                esta_um_lixo(posicao){
+                    lixo 1:
+                        tab0 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 2:
+                        tab1 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 3:
+                        tab2 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 4:
+                        tab3 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 5:
+                        tab4 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 6:
+                        tab5 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 7:
+                        tab6 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 8:
+                        tab7 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                    lixo 9:
+                        tab8 eu_sou_outra_pessoa 'X';
+                        me_quebrei;
+                }
+            }
+            jogador eu_sou_outra_pessoa isso_nao_e_verdade jogador;
+
+            // Verificar vitória
+            com_grandes_poderes((tab0 voce_e_como_eu tab1 juntos_podemos_conquistar_tudo tab1 voce_e_como_eu tab2 juntos_podemos_conquistar_tudo tab0 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab3 voce_e_como_eu tab4 juntos_podemos_conquistar_tudo tab4 voce_e_como_eu tab5 juntos_podemos_conquistar_tudo tab3 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab6 voce_e_como_eu tab7 juntos_podemos_conquistar_tudo tab7 voce_e_como_eu tab8 juntos_podemos_conquistar_tudo tab6 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab0 voce_e_como_eu tab3 juntos_podemos_conquistar_tudo tab3 voce_e_como_eu tab6 juntos_podemos_conquistar_tudo tab0 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab1 voce_e_como_eu tab4 juntos_podemos_conquistar_tudo tab4 voce_e_como_eu tab7 juntos_podemos_conquistar_tudo tab1 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab2 voce_e_como_eu tab5 juntos_podemos_conquistar_tudo tab5 voce_e_como_eu tab8 juntos_podemos_conquistar_tudo tab2 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab0 voce_e_como_eu tab4 juntos_podemos_conquistar_tudo tab4 voce_e_como_eu tab8 juntos_podemos_conquistar_tudo tab0 voce_nao_e_como_eu 32)
+                tem_sempre_outra_maneira (tab2 voce_e_como_eu tab4 juntos_podemos_conquistar_tudo tab4 voce_e_como_eu tab6 juntos_podemos_conquistar_tudo tab2 voce_nao_e_como_eu 32))
+            {
+                vencedor eu_sou_outra_pessoa isso_nao_e_verdade jogador; // o último que jogou venceu
+                me_quebrei; // força saída do loop
+            }
+
+            i eu_sou_outra_pessoa i posso_fazer_mais 1;
+        }
+        vem_grandes_responsabilidades{
+            deixa_a_mamae_e_o_papai_conversarem("Posicao ocupada! Tente novamente.\n");
+        }
+    }
+    vem_grandes_responsabilidades{
+        deixa_a_mamae_e_o_papai_conversarem("Posicao invalida! Tente novamente.\n");
+    }
+}
+
+// Exibe resultado final
+deixa_a_mamae_e_o_papai_conversarem("Tabuleiro final:\n");
+deixa_a_mamae_e_o_papai_conversarem("%c | %c | %c\n", tab0, tab1, tab2);
+deixa_a_mamae_e_o_papai_conversarem("--+---+--\n");
+deixa_a_mamae_e_o_papai_conversarem("%c | %c | %c\n", tab3, tab4, tab5);
+deixa_a_mamae_e_o_papai_conversarem("--+---+--\n");
+deixa_a_mamae_e_o_papai_conversarem("%c | %c | %c\n", tab6, tab7, tab8);
+
+com_grandes_poderes(vencedor voce_e_como_eu -1){
+    deixa_a_mamae_e_o_papai_conversarem("Deu velha! Ninguem venceu.\n");
+}
+vem_grandes_responsabilidades{
+    deixa_a_mamae_e_o_papai_conversarem("Jogador %d venceu!\n", vencedor posso_fazer_mais 1);
+}

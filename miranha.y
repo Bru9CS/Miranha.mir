@@ -8,6 +8,7 @@
     extern FILE *yyin;
     extern char* yytext;
     extern int lineNumber;
+    FILE* tokenDebug;
 %}
 
 %token T_INT T_FLOAT T_CHAR T_SCAN T_PRINT T_IF T_ELSE T_ELSEIF T_SWITCH T_CASE T_DEFAULT T_CONTINUE T_BREAK T_WHILE T_FOR INT_CONST FLOAT_CONST CHAR_CONST STRING_CONST PLUS_OP MINUS_OP MULT_OP DIV_OP MOD_OP EQ_OP NE_OP GE_OP LE_OP GT_OP LT_OP AND_OP OR_OP NOT_OP ASSIGN_OP SEMICOLON COLON COMMA LPAREN RPAREN LBRACE RBRACE ID
@@ -17,6 +18,11 @@
 %type <character> CHAR_CONST
 %type <text> STRING_CONST
 %type <var> ID
+
+%left PLUS_OP MINUS_OP
+%left MULT_OP DIV_OP MOD_OP
+%left EQ_OP NE_OP LT_OP LE_OP GT_OP GE_OP
+%left AND_OP OR_OP
 
 %union{
     int integer;
@@ -53,36 +59,44 @@ CMD:
     | ENQUANTO
     | PARA
     | EXPR SEMICOLON
+    {fprintf(outputFile, ";\n");}
     | T_BREAK SEMICOLON
+    {fprintf(outputFile, "break;\n");}
     | T_CONTINUE SEMICOLON
+    {fprintf(outputFile, "continue;\n");}
     | LE
     | ESCREVE
-    | LBRACE S RBRACE
+    | LBRACE
+    {fprintf(outputFile, "{\n");}
+    S RBRACE
+    {fprintf(outputFile, "}\n");}
 
 SE:
     T_IF LPAREN 
     {fprintf(outputFile, "if( ");}
     EXPR RPAREN 
     {fprintf(outputFile, ") ");}
-    CMD ELIF ELSE
+    CMD OTHER
+
+OTHER:
+    /*Vazio*/ | ELIF | ELSE
 
 ELIF:
-    /*Vazio*/ 
-    | T_ELSEIF LPAREN  
-    {fprintf(outputFile, "else if( ");}
+    T_ELSEIF LPAREN  
+    {fprintf(outputFile, "else{if( ");}
     EXPR RPAREN 
     {fprintf(outputFile, ") ");}
-    CMD ELIF
+    CMD OTHER
+    {fprintf(outputFile, "} ");}
 
 ELSE:
-    /*Vazio*/ 
-    | T_ELSE
+    T_ELSE
     {fprintf(outputFile, "else ");}
     CMD
 
 COND:
-    T_CASE LPAREN 
-    {fprintf(outputFile, "case( ");}
+    T_SWITCH LPAREN 
+    {fprintf(outputFile, "switch( ");}
     EXPR RPAREN LBRACE 
     {fprintf(outputFile, "){\n");}
     CASOS RBRACE
@@ -113,7 +127,10 @@ EXPR:
     ID ASSIGN_OP
     {fprintf(outputFile, "%s = ", $1);}
     EXPR 
-    | EXPR OP EXPR 
+    | EXPR OP EXPR
+    | NOT_OP
+    {fprintf(outputFile, "! ");}
+    EXPR 
     | LPAREN 
     {fprintf(outputFile, "( ");}
     EXPR RPAREN
@@ -127,6 +144,7 @@ OP:
 
 RELAT_OP:
     EQ_OP
+    {fprintf(outputFile, "== ");}
     | NE_OP
     {fprintf(outputFile, "!= ");}
     | LT_OP
@@ -137,6 +155,12 @@ RELAT_OP:
     {fprintf(outputFile, "> ");}
     | GE_OP
     {fprintf(outputFile, ">= ");}
+    | AND_OP
+    {fprintf(outputFile, "&& ");}
+    | OR_OP
+    {fprintf(outputFile, "|| ");}
+    | NOT_OP
+    {fprintf(outputFile, "! ");}
 
 ARITH_OP:
     PLUS_OP
@@ -156,7 +180,7 @@ NUM:
     | FLOAT_CONST
     {fprintf(outputFile, "%f ", $1);}
     | CHAR_CONST
-    {fprintf(outputFile, "%c ", $1);}
+    {fprintf(outputFile, "'%c' ", $1);}
 
 CASOS:
     T_CASE 
@@ -172,7 +196,7 @@ CASOS:
 LE:
     T_SCAN LPAREN STRING_CONST
     {fprintf(outputFile, "scanf(\"%s\" ", $3);}
-    PARAM RPAREN SEMICOLON
+    VARLIST RPAREN SEMICOLON
     {fprintf(outputFile, ");\n");}
 
 ESCREVE:
@@ -180,6 +204,12 @@ ESCREVE:
     {fprintf(outputFile, "printf(\"%s\" ", $3);}
     PARAM RPAREN SEMICOLON
     {fprintf(outputFile, ");\n");}
+
+VARLIST:
+    /*Vazio*/
+    | COMMA ID
+     {fprintf(outputFile, ", &%s", $2);}
+     VARLIST
 
 PARAM:
     /*Vazio*/
@@ -195,13 +225,14 @@ int yyerror(char *s){
 
 int main(int argc, char* argv[]){
     //verifica formato da chamada
-    if (argc != 2) {
-        fprintf(stderr, "Uso: %s arquivo.mir\n", argv[0]);
+    if (argc < 2 || argc > 3) {
+        fprintf(stderr, "Uso: %s arquivo.mir [-o]\n", argv[0]);
         return 1;
     }
 
     char outputC[256];
     char outputExe[256];
+    char outputLog[256];
 
     // Copiar nome base sem extensão
     strncpy(outputC, argv[1], sizeof(outputC) - 1);
@@ -213,6 +244,16 @@ int main(int argc, char* argv[]){
         strcpy(ext, ".c");
     } else {
         strcat(outputC, ".c");
+    }
+
+    // Trocar a extensão por .log
+    strncpy(outputLog, argv[1], sizeof(outputLog) - 1);
+    outputLog[sizeof(outputLog) - 1] = '\0';
+    ext = strrchr(outputLog, '.');
+    if (ext) {
+        strcpy(ext, ".log");
+    } else {
+        strcat(outputC, ".log");
     }
 
     // Criar nome do executável (sem extensão)
@@ -231,6 +272,12 @@ int main(int argc, char* argv[]){
 
     fprintf(outputFile, "#include <stdio.h>\nint main(){\n");
 
+    tokenDebug = fopen(outputLog, "w");
+    if (!tokenDebug) {
+        perror("Erro ao abrir .log");
+        exit(1);
+    }
+
     yyin = fopen(argv[1], "r");
     if (!yyin) {
         perror("Erro ao abrir arquivo de entrada");
@@ -240,6 +287,7 @@ int main(int argc, char* argv[]){
     fclose(yyin);
     fprintf(outputFile, "\nreturn 0;\n}");
     fclose(outputFile);
+    fclose(tokenDebug);
 
     if(result == 0){
         char cmd[512];
@@ -251,8 +299,10 @@ int main(int argc, char* argv[]){
     }
 
     // Apagar arquivo temporário .c
-    if (remove(outputC) != 0) {
-        perror("Erro ao remover output");
+    if(argc == 3 && strcmp(argv[3], "-o")){
+        if (remove(outputC) != 0) {
+            perror("Erro ao remover output");
+        }
     }
     return 0;
 }

@@ -1,0 +1,24 @@
+o_anuncio_dizia_tres_mil n;
+o_anuncio_dizia_tres_mil a eu_sou_outra_pessoa 1;
+o_anuncio_dizia_tres_mil b eu_sou_outra_pessoa 1;
+o_anuncio_dizia_tres_mil i eu_sou_outra_pessoa 3;
+o_anuncio_dizia_tres_mil fib;
+
+deixa_a_mamae_e_o_papai_conversarem("Digite o valor de n: ");
+pode_falar("%d", n);
+
+com_grandes_poderes(n voce_ainda_tem_muito_o_que_aprender 1){
+    deixa_a_mamae_e_o_papai_conversarem("Forneca um numero maior que 0");
+}
+se_alguem_comesse_promessa_minha_filha_seria_gorda(n voce_ainda_tem_muito_o_que_aprender 3){
+    deixa_a_mamae_e_o_papai_conversarem("Fibonacci eh: 1");
+}
+vem_grandes_responsabilidades{
+    aguenta_ai_mary_jane(i ainda_nao_sou_tudo_que_posso_ser n){
+        fib eu_sou_outra_pessoa a posso_fazer_mais b;
+        a eu_sou_outra_pessoa b;
+        b eu_sou_outra_pessoa fib;
+        i eu_sou_outra_pessoa i posso_fazer_mais 1;
+    }
+    deixa_a_mamae_e_o_papai_conversarem("Fibonacci eh: %d", fib);
+}

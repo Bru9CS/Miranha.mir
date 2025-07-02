@@ -796,12 +796,14 @@ char *yytext;
 #line 2 "miranha.l"
     #include <stdio.h>
     #include <string.h>
+    #include <stdlib.h>
     #include "miranha.tab.h"
     int lineNumber = 1;
     void showError(char*, int);
     int yywrap();
-#line 803 "lex.yy.c"
-#line 804 "lex.yy.c"
+    extern FILE* tokenDebug;
+#line 805 "lex.yy.c"
+#line 806 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -1018,10 +1020,10 @@ YY_DECL
 		}
 
 	{
-#line 22 "miranha.l"
+#line 24 "miranha.l"
 
 
-#line 1024 "lex.yy.c"
+#line 1026 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1080,233 +1082,233 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 24 "miranha.l"
-{return(T_INT);}
+#line 26 "miranha.l"
+{fprintf(tokenDebug, "%s => declaracao de inteiro\n", yytext); return(T_INT);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 25 "miranha.l"
-{return(T_FLOAT);}
+#line 27 "miranha.l"
+{fprintf(tokenDebug, "%s => declaracao de float\n", yytext); return(T_FLOAT);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 26 "miranha.l"
-{return(T_CHAR);}
+#line 28 "miranha.l"
+{fprintf(tokenDebug, "%s => declaracao de char\n", yytext); return(T_CHAR);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "miranha.l"
-{return(T_SCAN);}
+#line 29 "miranha.l"
+{fprintf(tokenDebug, "%s => scan\n", yytext); return(T_SCAN);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 28 "miranha.l"
-{return(T_PRINT);}
+#line 30 "miranha.l"
+{fprintf(tokenDebug, "%s => print\n", yytext); return(T_PRINT);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 29 "miranha.l"
-{return(T_IF);}
+#line 31 "miranha.l"
+{fprintf(tokenDebug, "%s => condicional\n", yytext); return(T_IF);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 30 "miranha.l"
-{return(T_ELSE);}
+#line 32 "miranha.l"
+{fprintf(tokenDebug, "%s => condicional padrao\n", yytext); return(T_ELSE);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 31 "miranha.l"
-{return(T_ELSEIF);}
+#line 33 "miranha.l"
+{fprintf(tokenDebug, "%s => condicional extra\n", yytext); return(T_ELSEIF);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 32 "miranha.l"
-{return(T_SWITCH);}
+#line 34 "miranha.l"
+{fprintf(tokenDebug, "%s => switch\n", yytext); return(T_SWITCH);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 33 "miranha.l"
-{return(T_CASE);}
+#line 35 "miranha.l"
+{fprintf(tokenDebug, "%s => caso\n", yytext); return(T_CASE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 34 "miranha.l"
-{return(T_DEFAULT);}
+#line 36 "miranha.l"
+{fprintf(tokenDebug, "%s => caso geral\n", yytext); return(T_DEFAULT);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 35 "miranha.l"
-{return(T_CONTINUE);}
+#line 37 "miranha.l"
+{fprintf(tokenDebug, "%s => continuar\n", yytext); return(T_CONTINUE);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 36 "miranha.l"
-{return(T_BREAK);}
+#line 38 "miranha.l"
+{fprintf(tokenDebug, "%s => quebrar\n", yytext); return(T_BREAK);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 37 "miranha.l"
-{return(T_WHILE);}
+#line 39 "miranha.l"
+{fprintf(tokenDebug, "%s => enquanto\n", yytext); return(T_WHILE);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 38 "miranha.l"
-{return(T_FOR);}
+#line 40 "miranha.l"
+{fprintf(tokenDebug, "%s => para\n", yytext); return(T_FOR);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 40 "miranha.l"
-{yylval.integer = atoi(yytext); return(INT_CONST);}
+#line 42 "miranha.l"
+{fprintf(tokenDebug, "%s => int\n", yytext); yylval.integer = atoi(yytext); return(INT_CONST);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 41 "miranha.l"
-{yylval.floating = atof(yytext); return(FLOAT_CONST);}
+#line 43 "miranha.l"
+{fprintf(tokenDebug, "%s => float\n", yytext); yylval.floating = atof(yytext); return(FLOAT_CONST);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 42 "miranha.l"
-{yylval.character = yytext[1];; return(CHAR_CONST);}
+#line 44 "miranha.l"
+{fprintf(tokenDebug, "%s => char\n", yytext); yylval.character = yytext[1];; return(CHAR_CONST);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 43 "miranha.l"
-{strncpy(yylval.text, yytext + 1, yyleng - 2); yylval.text[yyleng - 2] = '\0'; return(STRING_CONST);}
+#line 45 "miranha.l"
+{fprintf(tokenDebug, "%s => string\n", yytext); strncpy(yylval.text, yytext + 1, yyleng - 2); yylval.text[yyleng - 2] = '\0'; return(STRING_CONST);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 45 "miranha.l"
-{return(PLUS_OP);}
+#line 47 "miranha.l"
+{fprintf(tokenDebug, "%s => mais\n", yytext); return(PLUS_OP);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 46 "miranha.l"
-{return(MINUS_OP);}
+#line 48 "miranha.l"
+{fprintf(tokenDebug, "%s => menos\n", yytext); return(MINUS_OP);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 47 "miranha.l"
-{return(MULT_OP);}
+#line 49 "miranha.l"
+{fprintf(tokenDebug, "%s => vezes\n", yytext); return(MULT_OP);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 48 "miranha.l"
-{return(DIV_OP);}
+#line 50 "miranha.l"
+{fprintf(tokenDebug, "%s => divide\n", yytext); return(DIV_OP);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 49 "miranha.l"
-{return(MOD_OP);}
+#line 51 "miranha.l"
+{fprintf(tokenDebug, "%s => resto\n", yytext); return(MOD_OP);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 50 "miranha.l"
-{return(EQ_OP);}
+#line 52 "miranha.l"
+{fprintf(tokenDebug, "%s => igualdade\n", yytext); return(EQ_OP);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 51 "miranha.l"
-{return(NE_OP);}
+#line 53 "miranha.l"
+{fprintf(tokenDebug, "%s => desigualdade\n", yytext); return(NE_OP);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 52 "miranha.l"
-{return(GE_OP);}
+#line 54 "miranha.l"
+{fprintf(tokenDebug, "%s => maior ou igual\n", yytext); return(GE_OP);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 53 "miranha.l"
-{return(LE_OP);}
+#line 55 "miranha.l"
+{fprintf(tokenDebug, "%s => menor ou igual\n", yytext); return(LE_OP);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 54 "miranha.l"
-{return(GT_OP);}
+#line 56 "miranha.l"
+{fprintf(tokenDebug, "%s => maior\n", yytext); return(GT_OP);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 55 "miranha.l"
-{return(LT_OP);}
+#line 57 "miranha.l"
+{fprintf(tokenDebug, "%s => menor\n", yytext); return(LT_OP);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 56 "miranha.l"
-{return(AND_OP);}
+#line 58 "miranha.l"
+{fprintf(tokenDebug, "%s => e logico\n", yytext); return(AND_OP);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 57 "miranha.l"
-{return(OR_OP);}
+#line 59 "miranha.l"
+{fprintf(tokenDebug, "%s => ou logico\n", yytext); return(OR_OP);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 58 "miranha.l"
-{return(NOT_OP);}
+#line 60 "miranha.l"
+{fprintf(tokenDebug, "%s => nao logico\n", yytext); return(NOT_OP);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 59 "miranha.l"
-{return(ASSIGN_OP);}
+#line 61 "miranha.l"
+{fprintf(tokenDebug, "%s => atribuicao\n", yytext); return(ASSIGN_OP);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 61 "miranha.l"
-{return(SEMICOLON);}
+#line 63 "miranha.l"
+{fprintf(tokenDebug, "%s => ponto e virgula\n", yytext); return(SEMICOLON);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 62 "miranha.l"
-{return(COLON);}
+#line 64 "miranha.l"
+{fprintf(tokenDebug, "%s => dois pontos\n", yytext); return(COLON);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 63 "miranha.l"
-{return(COMMA);}
+#line 65 "miranha.l"
+{fprintf(tokenDebug, "%s => virgula\n", yytext); return(COMMA);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 64 "miranha.l"
-{return(LPAREN);}
+#line 66 "miranha.l"
+{fprintf(tokenDebug, "%s => parentese esquerdo\n", yytext); return(LPAREN);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 65 "miranha.l"
-{return(RPAREN);}
+#line 67 "miranha.l"
+{fprintf(tokenDebug, "%s => parentese direito\n", yytext); return(RPAREN);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 66 "miranha.l"
-{return(LBRACE);}
+#line 68 "miranha.l"
+{fprintf(tokenDebug, "%s => chave esquerda\n", yytext); return(LBRACE);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 67 "miranha.l"
-{return(RBRACE);}
+#line 69 "miranha.l"
+{fprintf(tokenDebug, "%s => chave direita\n", yytext); return(RBRACE);}
 	YY_BREAK
 case 42:
 /* rule 42 can match eol */
 YY_RULE_SETUP
-#line 69 "miranha.l"
+#line 71 "miranha.l"
 {lineNumber++;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 71 "miranha.l"
-{strncpy(yylval.var, yytext, 63); yylval.var[63] = '\0'; return(ID);}
+#line 73 "miranha.l"
+{fprintf(tokenDebug, "%s => variavel\n", yytext); strncpy(yylval.var, yytext, 63); yylval.var[63] = '\0'; return(ID);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 73 "miranha.l"
+#line 75 "miranha.l"
 ;   /* tira espaçamentos */
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 74 "miranha.l"
+#line 76 "miranha.l"
 ;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 75 "miranha.l"
+#line 77 "miranha.l"
 {
         int c;
 
@@ -1327,15 +1329,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 93 "miranha.l"
+#line 95 "miranha.l"
 {showError(yytext, lineNumber);}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 95 "miranha.l"
+#line 97 "miranha.l"
 ECHO;
 	YY_BREAK
-#line 1338 "lex.yy.c"
+#line 1340 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2340,7 +2342,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 95 "miranha.l"
+#line 97 "miranha.l"
 
 
 int yywrap() {
