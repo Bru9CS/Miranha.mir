@@ -299,7 +299,7 @@ int main(int argc, char* argv[]){
     }
 
     // Apagar arquivo temporário .c
-    if(argc == 3 && strcmp(argv[3], "-o")){
+    if(!(argc == 3 && strcmp(argv[3], "-o"))){
         if (remove(outputC) != 0) {
             perror("Erro ao remover output");
         }

@@ -1,0 +1,23 @@
+//Verificar se dois inteiros sao palindromos
+
+o_anuncio_dizia_tres_mil a;
+o_anuncio_dizia_tres_mil b;
+o_anuncio_dizia_tres_mil reverso;
+
+deixa_a_mamae_e_o_papai_conversarem("Forneca o primeiro numero:");
+pode_falar("%d", a);
+deixa_a_mamae_e_o_papai_conversarem("Forneca o segundo numero:");
+pode_falar("%d", b);
+
+aguenta_ai_mary_jane(b voce_nao_e_como_eu 0){
+    o_anuncio_dizia_tres_mil resto eu_sou_outra_pessoa b quem_disse_que_isso_e_problema_meu 10;
+    reverso eu_sou_outra_pessoa reverso potencializa_as_caracteristicas 10 posso_fazer_mais resto;
+    b eu_sou_outra_pessoa b ele_roubou_o_cara_das_pizzas 10;
+}
+
+com_grandes_poderes(a voce_e_como_eu reverso){
+    deixa_a_mamae_e_o_papai_conversarem("Sao inversos");
+}
+vem_grandes_responsabilidades{
+    deixa_a_mamae_e_o_papai_conversarem("Nao sao inversos");
+}
