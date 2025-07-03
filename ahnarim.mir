@@ -1,8 +1,8 @@
-//Verificar se dois inteiros sao palindromos
+//Verificar se dois inteiros sao o inverso do outro
 
 o_anuncio_dizia_tres_mil a;
 o_anuncio_dizia_tres_mil b;
-o_anuncio_dizia_tres_mil reverso;
+o_anuncio_dizia_tres_mil reverso eu_sou_outra_pessoa 0;
 
 deixa_a_mamae_e_o_papai_conversarem("Forneca o primeiro numero:");
 pode_falar("%d", a);
