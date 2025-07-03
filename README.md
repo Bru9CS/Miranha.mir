@@ -12,6 +12,11 @@ Para compilar um código fileName.mir, deixando registrado o código C intermedi
 
 miranha fileName.mir -o
 
+# Usando o arquivo de saída
+A saída sempre terá o mesmo nome da entrada. Então, para rodar seu programa, apenas escreva no terminal:
+
+fileName.exe
+
 # Compilando o compilador
 No MingW, use:
 
